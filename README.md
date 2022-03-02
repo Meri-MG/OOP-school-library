@@ -1,6 +1,6 @@
 # Project Name
 
-> This programm creates the tool to record what books are in the library and who borrows them. The app allows to:
+> This program creates the tool to record what books are in the library and who borrows them. The app allows to:
 
 > Add new students or teachers.
 > Add new books.
