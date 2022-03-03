@@ -16,12 +16,6 @@ class Person
     @age >= 18 || parent_permission
   end
 
-  private
-
-  def of_age?
-    @age >= 18
-  end
-
   def validate_name
     @name = @corrector.correct_name(@name)
   end
@@ -30,4 +24,11 @@ class Person
     @rentals << rental
     rental.person = self unless rental.person == self
   end
+
+  private
+
+  def of_age?
+    @age >= 18
+  end
+
 end
