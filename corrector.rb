@@ -5,5 +5,5 @@ class Corrector
   end
 end
 
-name_one = Corrector.new
-puts name_one.correct_name('dsvhhctfg')
+# name_one = Corrector.new
+# puts name_one.correct_name('dsvhhctfg')
