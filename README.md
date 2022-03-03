@@ -32,7 +32,7 @@ ruby library.rb
 
 ## Author
 
-👤 **Meri Gogichashvili**
+:woman: **Meri Gogichashvili**
 
 - GitHub: [@githubhandle](https://github.com/Meri-MG)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/meri-gogichashvili/)
