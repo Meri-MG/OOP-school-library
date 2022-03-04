@@ -14,6 +14,3 @@ class Rental
     person.rentals.push(self)
   end
 end
-
-book = Book.new('title', 'author')
-pers = Person.new(21)
