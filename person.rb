@@ -4,9 +4,10 @@ class Person
   attr_accessor :name, :age, :rentals
   attr_reader :id
 
-  def initialize(age, name: 'Unknown', parent_permission: true)
+  def initialize(age, name = 'Unknown', parent_permission: true)
     @age = age
     @name = name
+    @id = Random.rand(1...1000)
     @parent_permission = parent_permission
     @corrector = Corrector.new
     @rentals = []
