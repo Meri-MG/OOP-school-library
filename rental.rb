@@ -17,7 +17,3 @@ end
 
 book = Book.new('title', 'author')
 pers = Person.new(21)
-
-# p book.rentals.push(book)
-# p book
-# p pers.rentals

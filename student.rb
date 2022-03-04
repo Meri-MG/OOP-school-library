@@ -18,12 +18,3 @@ class Student < Person
     classroom.add_student(self) unless classroom.students.include?(self)
   end
 end
-
-# c = Classroom.new('label')
-# s = Student.new(17, c)
-# s2 = Student.new(19, c)
-# puts s
-# puts s.classroom
-# p s2.classroom
-# p s
-# p c

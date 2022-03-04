@@ -13,10 +13,10 @@ class App
     @rentals = []
   end
 
-  def intro 
+  def intro
     puts 'Welcome to School Library App!'
 
-    loop do 
+    loop do
       intro_cases
 
       case_entry = gets.chomp.to_i
@@ -53,7 +53,7 @@ class App
       create_rental
     when 6
       rental_by_id
-    else 
+    else
       puts 'Invalid Entry'
     end
   end
@@ -69,9 +69,10 @@ class App
   def create_person
     print 'Do you want to create a student (1) or a teacher (2)? [Input the number]: '
     num_input = gets.chomp.to_i
-    if num_input == 1
+    case num_input
+    when 1
       create_student
-    elsif num_input == 2
+    when 2
       create_teacher
     end
 
@@ -120,19 +121,21 @@ class App
 
   def create_rental
     puts 'Select a person from the following list by number: '
+
     @people.each_with_index.map do |person, i|
       puts "#{i}) [#{person.class}] Name: #{person.name}, ID: #{person.id}, age: #{person.age}"
     end
     selected_person = gets.chomp.to_i
+
     puts 'Select a book from the following list by number'
+
     @books.each_with_index.map { |book, i| puts "#{i}) Title: #{book.title}, Author: #{book.author}" }
     selected_book = gets.chomp.to_i
-    if selected_book == ''
-      puts 'Invalid Entry'
-    end
 
     print 'Enter Date in this format DD/MM/YYYY: '
+
     date = gets.chomp
+
     if selected_person > @people.length || selected_book > @people.length
       puts 'Inavlid selection for person or book choice'
     else
@@ -162,5 +165,5 @@ def main
   app.intro
 end
 
-  main
+main
 
