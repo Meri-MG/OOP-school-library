@@ -4,7 +4,7 @@ require_relative './person'
 class Rental
   attr_accessor :date, :book, :person
 
-  def initialize(date, book, person)
+  def initialize(date, person, book)
     @date = date
 
     @book = book
@@ -18,6 +18,6 @@ end
 book = Book.new('title', 'author')
 pers = Person.new(21)
 
-p book.rentals.push(book)
-p book
-p pers.rentals
+# p book.rentals.push(book)
+# p book
+# p pers.rentals
