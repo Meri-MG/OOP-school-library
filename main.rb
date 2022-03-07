@@ -32,5 +32,5 @@ class App
   end
 end
 
-  app = App.new
-  app.intro
+app = App.new
+app.intro
