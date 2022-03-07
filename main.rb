@@ -6,10 +6,15 @@ class App
   end
 
   def intro
+
     puts 'Welcome to School Library App!'
+    
     loop do
+
       intro_cases
+
       case_entry = gets.chomp.to_i
+
       break if case_entry == 7
 
       @refactored.case_chosen(case_entry)
