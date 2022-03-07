@@ -1,23 +1,23 @@
-require_relative 'refactor'
+# frozen_string_literal: true
 
-def main
-  app = App.new
-  app.intro
-end
+require_relative 'refactor'
 
 class App
   def initialize
     @refactored = Refactor.new
   end
+
   def intro
     puts 'Welcome to School Library App!'
     loop do
       intro_cases
       case_entry = gets.chomp.to_i
       break if case_entry == 7
+
       @refactored.case_chosen(case_entry)
     end
   end
+
   def intro_cases
     puts ''
     puts 'Please choose an option by entering a number:'
@@ -29,6 +29,11 @@ class App
     puts '6 - List all rental for a given person id'
     puts '7 - Exit'
   end
+end
+
+def main
+  app = App.new
+  app.intro
 end
 
 main

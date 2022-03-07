@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative './person'
 require_relative './student'
 require_relative './teacher'
@@ -7,14 +9,13 @@ require_relative './corrector'
 require_relative './rental'
 
 class Refactor
-def initialize
+  def initialize
     @people = []
     @books = []
     @rentals = []
   end
 
-
-def case_chosen(choice)
+  def case_chosen(choice)
     case choice
     when 1
       list_books
@@ -118,10 +119,6 @@ def case_chosen(choice)
       @rentals.push(new_rental)
       puts 'Rental Created succesfully'
     end
-  end
-
-  def get_person_info
-
   end
 
   def rental_by_id
