@@ -6,11 +6,9 @@ class App
   end
 
   def intro
-
     puts 'Welcome to School Library App!'
-    
-    loop do
 
+    loop do
       intro_cases
 
       case_entry = gets.chomp.to_i
