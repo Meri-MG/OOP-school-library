@@ -38,6 +38,12 @@ ruby library.rb
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/meri-gogichashvili/)
 
 
+:male: **Ellis Ng'ona**
+
+- GitHub: [@mwanawabangona](https://github.com/mwanawabangona)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/ellisngona/)
+
+
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!
