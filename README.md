@@ -38,7 +38,7 @@ ruby library.rb
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/meri-gogichashvili/)
 
 
-:male: **Meri Gogichashvili**
+:male: **Ellis Ngona**
 
 - GitHub: [@mwanawabangona](https://github.com/mwanawabangona)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/ellisngona/)
