@@ -1,6 +1,9 @@
 require_relative 'corrector'
 
 class Person
+  @@people_filename = 'people.json'
+  @@people = []
+
   attr_accessor :name, :age, :rentals
   attr_reader :id
 
@@ -24,6 +27,10 @@ class Person
   def add_rental(rental)
     @rentals << rental
     rental.person = self unless rental.person == self
+  end
+
+  def self.overwrite_people(arr)
+    @@people = arr
   end
 
   private
