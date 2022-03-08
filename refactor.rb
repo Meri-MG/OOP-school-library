@@ -5,29 +5,54 @@ require_relative './classroom'
 require_relative './book'
 require_relative './corrector'
 require_relative './rental'
+require_relative './data_related'
 
 class Refactor
+  include DataLayer
 def initialize
     @people = []
-    @books = []
     @rentals = []
   end
 
+  def intro_cases
+    puts ''
+    puts 'Please choose an option by entering a number:'
+    puts '1 - List all books'
+    puts '2 - List all people'
+    puts '3 - Create a person'
+    puts '4 - Create a book'
+    puts '5 - Create a rental'
+    puts '6 - List all rental for a given person id'
+    puts '7 - Exit'
+
+    case_entry = gets.chomp.to_i
+    case_chosen(case_entry)
+  end
 
 def case_chosen(choice)
     case choice
     when 1
       list_books
+      intro_cases
     when 2
       list_people
+      intro_cases
     when 3
       create_person
+      intro_cases
     when 4
       create_book
+      intro_cases
     when 5
       create_rental
+      intro_cases
     when 6
       rental_by_id
+      intro_cases
+    when 7
+      books_path = Book.class_variable_get(:@@books_filename)
+      books_data = Book.class_variable_get(:@@books).map { |obj| object_to_hash(obj) }
+      save_data(books_path, books_data)
     else
       puts 'Invalid Entry'
     end
@@ -89,7 +114,7 @@ def case_chosen(choice)
     get_author = gets.chomp.downcase
 
     new_book = Book.new(get_title, get_author)
-    @books << new_book
+    Book.class_variable_get(:@@books) << new_book
 
     puts 'Book created successfully'
   end
