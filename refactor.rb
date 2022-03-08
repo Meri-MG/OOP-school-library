@@ -15,15 +15,15 @@ def initialize
   end
 
   def intro_cases
-    puts ''
-    puts 'Please choose an option by entering a number:'
-    puts '1 - List all books'
-    puts '2 - List all people'
-    puts '3 - Create a person'
-    puts '4 - Create a book'
-    puts '5 - Create a rental'
-    puts '6 - List all rental for a given person id'
-    puts '7 - Exit'
+    puts '',
+         'Please choose an option by entering a number:',
+         '1 - List all books',
+         '2 - List all people',
+         '3 - Create a person',
+         '4 - Create a book',
+         '5 - Create a rental',
+         '6 - List all rental for a given person id',
+         '7 - Exit'
 
     case_entry = gets.chomp.to_i
     case_chosen(case_entry)
@@ -52,18 +52,24 @@ def case_chosen(choice)
     when 7
       books_path = Book.class_variable_get(:@@books_filename)
       books_data = Book.class_variable_get(:@@books).map { |obj| object_to_hash(obj) }
+      people_path = Person.class_variable_get(:@@people_filename)
+      people_data = Person.class_variable_get(:@@people).map { |obj| object_to_hash(obj) }
+      rentals_path = Rental.class_variable_get(:@@rentals_filename)
+      rentals_data = Rental.class_variable_get(:@@rentals).map { |obj| object_to_hash(obj) }
       save_data(books_path, books_data)
+      save_data(people_path, people_data)
+      save_data(rentals_path, rentals_data)
     else
-      puts 'Invalid Entry'
+      puts 'Seems like an invalid entry!'
     end
   end
 
   def list_books
-    @books.each_with_index.map { |book, i| puts "#{i}) Title: #{book.title}, Author: #{book.author} " }
+    Book.class_variable_get(:@@books).each_with_index.map { |book, i| puts "#{i}) Title: #{book.title}, Author: #{book.author} " }
   end
 
   def list_people
-    @people.map { |person| puts "[#{person.class}] Name: #{person.name}, ID: #{person.id}, age: #{person.age}" }
+    Person.class_variable_get(:@@people).map { |person| puts "[#{person.class}] Name: #{person.name}, ID: #{person.id}, age: #{person.age}" }
   end
 
   def create_person
@@ -90,6 +96,7 @@ def case_chosen(choice)
     parent_permission = gets.chomp.downcase == 'y'
 
     new_student = Student.new(@classroom, age, name, parent_permission: parent_permission)
+    Student.class_variable_get(:@@people) << new_student
     @people << new_student
   end
 
@@ -104,6 +111,7 @@ def case_chosen(choice)
     specialization = gets.chomp.downcase
 
     new_teacher = Teacher.new(age, specialization, name)
+    Teacher.class_variable_get(:@@people) << new_teacher
     @people << new_teacher
   end
 
@@ -122,14 +130,14 @@ def case_chosen(choice)
   def create_rental
     puts 'Select a person from the following list by number: '
 
-    @people.each_with_index.map do |person, i|
-      puts "#{i}) [#{person.class}] Name: #{person.name}, ID: #{person.id}, age: #{person.age}"
+    Person.class_variable_get(:@@people).each_with_index.map do |person, i|
+      puts "#{i + 1}) [#{person.class}] Name: #{person.name}, ID: #{person.id}, age: #{person.age}"
     end
     selected_person = gets.chomp.to_i
 
     puts 'Select a book from the following list by number: '
 
-    @books.each_with_index.map { |book, i| puts "#{i}) Title: #{book.title}, Author: #{book.author}" }
+    Book.class_variable_get(:@@books).each_with_index.map { |book, i| puts "#{i + 1}) Title: #{book.title}, Author: #{book.author}" }
     selected_book = gets.chomp.to_i
 
     print 'Enter Date in this format DD/MM/YYYY: '
@@ -140,6 +148,7 @@ def case_chosen(choice)
       puts 'Inavlid selection for person or book choice'
     else
       new_rental = Rental.new(date, @people[selected_person], @books[selected_book])
+      Rental.class_variable_get(:@@rentals) << new_rental
       @rentals.push(new_rental)
       puts 'Rental Created succesfully'
     end
@@ -150,8 +159,8 @@ def case_chosen(choice)
   end
 
   def rental_by_id
-    @people.each_with_index.map do |person, i|
-      puts "#{i}) [#{person.class}] Name: #{person.name}, ID: #{person.id}, age: #{person.age}"
+    Person.class_variable_get(:@@people).each_with_index.map do |person, i|
+      puts "#{i + 1}) [#{person.class}] Name: #{person.name}, ID: #{person.id}, age: #{person.age}"
     end
     print 'ID of person: '
     person_id = gets.chomp.to_i
