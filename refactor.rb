@@ -61,6 +61,7 @@ def case_chosen(choice)
       save_data(rentals_path, rentals_data)
     else
       puts 'Seems like an invalid entry!'
+      
     end
   end
 
@@ -123,13 +124,14 @@ def case_chosen(choice)
 
     new_book = Book.new(get_title, get_author)
     Book.class_variable_get(:@@books) << new_book
+    @books << new_book
 
     puts 'Book created successfully'
   end
 
   def create_rental
     puts 'Select a person from the following list by number: '
-
+    
     Person.class_variable_get(:@@people).each_with_index.map do |person, i|
       puts "#{i + 1}) [#{person.class}] Name: #{person.name}, ID: #{person.id}, age: #{person.age}"
     end
@@ -138,6 +140,7 @@ def case_chosen(choice)
     puts 'Select a book from the following list by number: '
 
     Book.class_variable_get(:@@books).each_with_index.map { |book, i| puts "#{i + 1}) Title: #{book.title}, Author: #{book.author}" }
+    
     selected_book = gets.chomp.to_i
 
     print 'Enter Date in this format DD/MM/YYYY: '
@@ -148,7 +151,9 @@ def case_chosen(choice)
       puts 'Inavlid selection for person or book choice'
     else
       new_rental = Rental.new(date, @people[selected_person], @books[selected_book])
+
       Rental.class_variable_get(:@@rentals) << new_rental
+
       @rentals.push(new_rental)
       puts 'Rental Created succesfully'
     end
