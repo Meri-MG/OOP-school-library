@@ -1,3 +1,5 @@
+# rubocop: disable Style/ClassVars
+
 class Book
   @@books = []
   @@books_filename = 'books.json'

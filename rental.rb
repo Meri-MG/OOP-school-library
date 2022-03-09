@@ -2,6 +2,8 @@ require_relative './book'
 require_relative './person'
 require_relative './data_related'
 
+# rubocop: disable Style/ClassVars
+
 class Rental
   @@rentals_filename = 'rentals.json'
   @@rentals = []

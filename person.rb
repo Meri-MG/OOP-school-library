@@ -1,5 +1,7 @@
 require_relative 'corrector'
 
+# rubocop: disable Style/ClassVars
+
 class Person
   @@people_filename = 'people.json'
   @@people = []

@@ -66,11 +66,15 @@ class Refactor
   end
 
   def list_books
-    Book.class_variable_get(:@@books).each_with_index.map { |book, i| puts "#{i}) Title: #{book.title}, Author: #{book.author} " }
+    Book.class_variable_get(:@@books).each_with_index.map do |book, i|
+      puts "#{i}) Title: #{book.title}, Author: #{book.author} "
+    end
   end
 
   def list_people
-    Person.class_variable_get(:@@people).map { |person| puts "[#{person.class}] Name: #{person.name}, ID: #{person.id}, age: #{person.age}" }
+    Person.class_variable_get(:@@people).map do |person|
+      puts "[#{person.class}] Name: #{person.name}, ID: #{person.id}, age: #{person.age}"
+    end
   end
 
   def create_person
@@ -138,7 +142,9 @@ class Refactor
 
     puts 'Select a book from the following list by number: '
 
-    Book.class_variable_get(:@@books).each_with_index.map { |book, i| puts "#{i + 1}) Title: #{book.title}, Author: #{book.author}" }
+    Book.class_variable_get(:@@books).each_with_index.map do |book, i|
+      puts "#{i + 1}) Title: #{book.title}, Author: #{book.author}"
+    end
 
     selected_book = gets.chomp.to_i
 
@@ -149,7 +155,8 @@ class Refactor
     if selected_person > Person.class_variable_get(:@@people).length || selected_book > Book.class_variable_get(:@@books).length
       puts 'Invalid selection for person or book choice'
     else
-      new_rental = Rental.new(date, Person.class_variable_get(:@@people)[selected_person - 1], Book.class_variable_get(:@@books)[selected_book - 1])
+      new_rental = Rental.new(date, Person.class_variable_get(:@@people)[selected_person - 1],
+                              Book.class_variable_get(:@@books)[selected_book - 1])
 
       Rental.class_variable_get(:@@rentals) << new_rental
 

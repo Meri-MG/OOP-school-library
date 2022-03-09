@@ -41,7 +41,8 @@ module DataLayer
         stud.rentals = hash['rentals'].map { |rental| hash_to_object(rental, 'Rental') }
         stud
       when 'Teacher'
-        teach = Teacher.new(hash['age'], hash['specialization'], hash['name'], parent_permission: hash['parent_permission'])
+        teach = Teacher.new(hash['age'], hash['specialization'], hash['name'],
+                            parent_permission: hash['parent_permission'])
         teach.id = hash['id']
         teach.rentals = hash['rentals'].map { |rental| hash_to_object(rental, 'Rental') }
         teach
