@@ -37,3 +37,5 @@ class Person
     @age >= 18
   end
 end
+
+# rubocop: enable Style/ClassVars

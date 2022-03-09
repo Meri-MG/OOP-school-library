@@ -18,3 +18,5 @@ class Book
     @@books = arr
   end
 end
+
+# rubocop: enable Style/ClassVars

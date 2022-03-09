@@ -51,18 +51,22 @@ class Refactor
       rental_by_id
       intro_cases
     when 7
-      books_path = Book.class_variable_get(:@@books_filename)
-      books_data = Book.class_variable_get(:@@books).map { |obj| object_to_hash(obj) }
-      people_path = Person.class_variable_get(:@@people_filename)
-      people_data = Person.class_variable_get(:@@people).map { |obj| object_to_hash(obj) }
-      rentals_path = Rental.class_variable_get(:@@rentals_filename)
-      rentals_data = Rental.class_variable_get(:@@rentals).map { |obj| object_to_hash(obj) }
-      save_data(books_path, books_data)
-      save_data(people_path, people_data)
-      save_data(rentals_path, rentals_data)
+      save_on_exit
     else
       puts 'Seems like an invalid entry!'
     end
+  end
+
+  def save_on_exit
+    books_path = Book.class_variable_get(:@@books_filename)
+    books_data = Book.class_variable_get(:@@books).map { |obj| object_to_hash(obj) }
+    people_path = Person.class_variable_get(:@@people_filename)
+    people_data = Person.class_variable_get(:@@people).map { |obj| object_to_hash(obj) }
+    rentals_path = Rental.class_variable_get(:@@rentals_filename)
+    rentals_data = Rental.class_variable_get(:@@rentals).map { |obj| object_to_hash(obj) }
+    save_data(books_path, books_data)
+    save_data(people_path, people_data)
+    save_data(rentals_path, rentals_data)
   end
 
   def list_books
@@ -152,7 +156,8 @@ class Refactor
 
     date = gets.chomp
 
-    if selected_person > Person.class_variable_get(:@@people).length || selected_book > Book.class_variable_get(:@@books).length
+    if selected_person > Person.class_variable_get(:@@people).length ||
+       selected_book > Book.class_variable_get(:@@books).length
       puts 'Invalid selection for person or book choice'
     else
       new_rental = Rental.new(date, Person.class_variable_get(:@@people)[selected_person - 1],

@@ -22,3 +22,5 @@ class Rental
     @@rentals = arr
   end
 end
+
+# rubocop: enable Style/ClassVars
