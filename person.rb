@@ -4,8 +4,7 @@ class Person
   @@people_filename = 'people.json'
   @@people = []
 
-  attr_accessor :name, :age, :rentals
-  attr_reader :id
+  attr_accessor :name, :age, :rentals, :id
 
   def initialize(age, name = 'Unknown', parent_permission: true)
     @age = age
@@ -24,10 +23,7 @@ class Person
     @name = @corrector.correct_name(@name)
   end
 
-  def add_rental(rental)
-    @rentals << rental
-    rental.person = self unless rental.person == self
-  end
+  def add_rental(rental) end
 
   def self.overwrite_people(arr)
     @@people = arr

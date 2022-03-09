@@ -1,4 +1,5 @@
 require 'json'
+require 'pry'
 require_relative 'book'
 require_relative 'person'
 require_relative 'student'
@@ -29,18 +30,18 @@ module DataLayer
   def hash_to_object(hash, classname)
     case classname
     when 'Book'
-      Book.new(hash['title'], hash['author'], hash['rentals'])
+      Book.new(hash['title'], hash['author'])
     when 'Rental'
-      Rental.new(hash['date'], hash_to_object(hash['book'], 'Book'), hash_to_object(hash['person'], 'Person'))
+      Rental.new(hash['date'], hash_to_object(hash['person'], 'Person'), hash_to_object(hash['book'], 'Book'))
     when 'Person'
       case hash['type']
       when 'Student'
-        stud = Student.new(hash['age'], hash['classroom'], hash['name'], hash['parent_permission'])
+        stud = Student.new(hash['classroom'], hash['age'], hash['name'], parent_permission: hash['parent_permission'])
         stud.id = hash['id']
         stud.rentals = hash['rentals'].map { |rental| hash_to_object(rental, 'Rental') }
         stud
       when 'Teacher'
-        teach = Teacher.new(hash['age'], hash['specialization'], hash['name'])
+        teach = Teacher.new(hash['age'], hash['specialization'], hash['name'], parent_permission: hash['parent_permission'])
         teach.id = hash['id']
         teach.rentals = hash['rentals'].map { |rental| hash_to_object(rental, 'Rental') }
         teach

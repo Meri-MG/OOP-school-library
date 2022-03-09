@@ -1,3 +1,4 @@
+require 'pry'
 require_relative './person'
 require_relative './student'
 require_relative './teacher'
@@ -9,7 +10,7 @@ require_relative './data_related'
 
 class Refactor
   include DataLayer
-def initialize
+  def initialize
     @people = []
     @rentals = []
   end
@@ -29,7 +30,7 @@ def initialize
     case_chosen(case_entry)
   end
 
-def case_chosen(choice)
+  def case_chosen(choice)
     case choice
     when 1
       list_books
@@ -61,7 +62,6 @@ def case_chosen(choice)
       save_data(rentals_path, rentals_data)
     else
       puts 'Seems like an invalid entry!'
-      
     end
   end
 
@@ -124,14 +124,13 @@ def case_chosen(choice)
 
     new_book = Book.new(get_title, get_author)
     Book.class_variable_get(:@@books) << new_book
-    @books << new_book
 
     puts 'Book created successfully'
   end
 
   def create_rental
     puts 'Select a person from the following list by number: '
-    
+
     Person.class_variable_get(:@@people).each_with_index.map do |person, i|
       puts "#{i + 1}) [#{person.class}] Name: #{person.name}, ID: #{person.id}, age: #{person.age}"
     end
@@ -140,27 +139,22 @@ def case_chosen(choice)
     puts 'Select a book from the following list by number: '
 
     Book.class_variable_get(:@@books).each_with_index.map { |book, i| puts "#{i + 1}) Title: #{book.title}, Author: #{book.author}" }
-    
+
     selected_book = gets.chomp.to_i
 
     print 'Enter Date in this format DD/MM/YYYY: '
 
     date = gets.chomp
 
-    if selected_person > @people.length || selected_book > @people.length
-      puts 'Inavlid selection for person or book choice'
+    if selected_person > Person.class_variable_get(:@@people).length || selected_book > Book.class_variable_get(:@@books).length
+      puts 'Invalid selection for person or book choice'
     else
-      new_rental = Rental.new(date, @people[selected_person], @books[selected_book])
+      new_rental = Rental.new(date, Person.class_variable_get(:@@people)[selected_person - 1], Book.class_variable_get(:@@books)[selected_book - 1])
 
       Rental.class_variable_get(:@@rentals) << new_rental
 
-      @rentals.push(new_rental)
       puts 'Rental Created succesfully'
     end
-  end
-
-  def get_person_info
-
   end
 
   def rental_by_id
@@ -170,7 +164,7 @@ def case_chosen(choice)
     print 'ID of person: '
     person_id = gets.chomp.to_i
     puts 'Rentals: '
-    @rentals.each do |rental|
+    Rental.class_variable_get(:@@rentals).each do |rental|
       if rental.person.id == person_id
         puts "Date: #{rental.date}, Book: #{rental.book.title} by Author: #{rental.book.author} "
       end
