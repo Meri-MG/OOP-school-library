@@ -1,4 +1,9 @@
+# rubocop: disable Style/ClassVars
+
 class Book
+  @@books = []
+  @@books_filename = 'books.json'
+
   attr_accessor :title, :author, :rentals
 
   def initialize(title, author)
@@ -7,8 +12,11 @@ class Book
     @rentals = []
   end
 
-  def add_rental(rental)
-    @rentals << rental
-    rental.book = self unless rental.book == self
+  def add_rental(rental) end
+
+  def self.overwrite_books(arr)
+    @@books = arr
   end
 end
+
+# rubocop: enable Style/ClassVars

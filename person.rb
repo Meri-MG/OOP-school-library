@@ -1,8 +1,12 @@
 require_relative 'corrector'
 
+# rubocop: disable Style/ClassVars
+
 class Person
-  attr_accessor :name, :age, :rentals
-  attr_reader :id
+  @@people_filename = 'people.json'
+  @@people = []
+
+  attr_accessor :name, :age, :rentals, :id
 
   def initialize(age, name = 'Unknown', parent_permission: true)
     @age = age
@@ -21,9 +25,10 @@ class Person
     @name = @corrector.correct_name(@name)
   end
 
-  def add_rental(rental)
-    @rentals << rental
-    rental.person = self unless rental.person == self
+  def add_rental(rental) end
+
+  def self.overwrite_people(arr)
+    @@people = arr
   end
 
   private
@@ -32,3 +37,5 @@ class Person
     @age >= 18
   end
 end
+
+# rubocop: enable Style/ClassVars
