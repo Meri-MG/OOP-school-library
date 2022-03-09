@@ -8,6 +8,8 @@ require_relative './corrector'
 require_relative './rental'
 require_relative './data_related'
 
+# rubocop: disable Metrics
+
 class Refactor
   include DataLayer
   def initialize
@@ -183,3 +185,5 @@ class Refactor
     end
   end
 end
+
+# rubocop: enable Metrics
