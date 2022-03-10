@@ -16,9 +16,12 @@ describe Person do
       @student.age.should eql '17'
     end
   end
+
   describe '#age' do
     it 'checks if age is less than 18' do
       expect(@student.age).to be <= '18'
     end
   end
+
+  
 end
