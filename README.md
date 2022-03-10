@@ -18,24 +18,40 @@
   git clone git@github.com:Meri-MG/OOP-school-library.git
   ```
 - To get started, In the root directory run:
-```
-gem install bundler
-```
-Then run:
-```
-bundle install
-```
-Open terminal and run ruby app in the command Line:
-```
-ruby library.rb
-```
+  ```
+  gem install bundler
+  ```
+  Then run:
+  ```
+  bundle install
+  ```
+  Open terminal and run ruby app in the command Line:
+  ```
+  ruby library.rb
+  ```
 
+## Tests
+
+In order to run unit tests on the local machine Rspec gem should be installed 
+- run in the terminal 
+  ```
+  gem install rspec
+  ```
+- After installation run
+  ```
+  rspec spec/file_name.rb
+  ```
+- If you are interested in running all the tests together then
+  ```
+  rspec spec
+  ```
+- For more information please visit [RubyGuides](https://www.rubyguides.com/2018/07/rspec-tutorial/).
 ## Author
 
 :woman: **Meri Gogichashvili**
 
 - GitHub: [@githubhandle](https://github.com/Meri-MG)
-- LinkedIn: [LinkedIn](https://www.linkedin.com/in/meri-gogichashvili/)
+- LinkedIn: [Meri Gogichashvili](https://www.linkedin.com/in/meri-gogichashvili/)
 
 
 
@@ -43,7 +59,7 @@ ruby library.rb
 
 
 - GitHub: [@mwanawabangona](https://github.com/mwanawabangona)
-- LinkedIn: [LinkedIn](https://www.linkedin.com/in/ellisngona/)
+- LinkedIn: [Ellis Ngona](https://www.linkedin.com/in/ellisngona/)
 
 
 ## 🤝 Contributing
