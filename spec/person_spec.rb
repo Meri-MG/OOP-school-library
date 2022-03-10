@@ -34,5 +34,4 @@ describe Person do
   it 'checks validates students name' do
     expect(@student.validate_name).to eq 'Bob'
   end
-
 end
